@@ -28,7 +28,7 @@ For the prototype, **tabular data (CSV/Excel)** is required.
 
 
 #### [Folder 3 : notebooks](./notebooks)
-  - Contains **jupyter** notebook that has deep explanation with code side by side _(must view to understand the work behind the scene)_
+  - Contains **jupyter** notebook that has deep explanation with code side by side _(**must view** to understand the work behind the scene)_
 
 
 #### [Folder 4 : outputs](./outputs)
@@ -68,7 +68,7 @@ For the prototype, **tabular data (CSV/Excel)** is required.
 
 ---
 
-## Notes
+## Note
 
 This prototype prioritizes **clarity, honesty, and feasibility**.  
 Complexity is intentionally limited to ensure correctness and explainability.
