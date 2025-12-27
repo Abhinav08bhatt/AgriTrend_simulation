@@ -101,7 +101,7 @@ not to provide exact predictions.
 <details>
 <summary><b>Project structure</b></summary>
 
-- Must go through the [**RepoWorking**](RepoWorking.md) file to know the use the real structure.
+- Must go through the [**RepoWorking**](RepoWorking.md) file to know the structure used.
 - Each folder includes its own `README.md` for clarity.
 </details>
 
