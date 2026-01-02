@@ -158,7 +158,9 @@ class MyApp extends StatelessWidget {
 
                 visualDensity: VisualDensity.standard,
             ),
+
             home: const UploadPage(),
+
         );
     }
 }
