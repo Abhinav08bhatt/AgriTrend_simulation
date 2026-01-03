@@ -1,5 +1,5 @@
 // ignore_for_file: unused_import
-import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:file_selector/file_selector.dart';
@@ -150,6 +150,7 @@ class _UploadPageState extends State<UploadPage> {
                                             ),
                                             child: ElevatedButton(
                                                 onPressed: () {
+                                                    HapticFeedback.selectionClick();
                                                     loadSampleCsv(
                                                         'Universal synthetic data',
                                                         sampleFiles['Universal synthetic data']!,
@@ -200,6 +201,7 @@ class _UploadPageState extends State<UploadPage> {
                                             ),
                                             child: ElevatedButton(
                                                 onPressed: () {
+                                                    HapticFeedback.selectionClick();
                                                     loadSampleCsv(
                                                         'Rice synthetic data',
                                                         sampleFiles['Rice synthetic data']!,
@@ -250,6 +252,7 @@ class _UploadPageState extends State<UploadPage> {
                                             ),
                                             child: ElevatedButton(
                                                 onPressed: () {
+                                                    HapticFeedback.selectionClick();
                                                     loadSampleCsv(
                                                         'Wheat synthetic data',
                                                         sampleFiles['Wheat synthetic data']!,
@@ -300,6 +303,7 @@ class _UploadPageState extends State<UploadPage> {
                                             ),
                                             child: ElevatedButton(
                                                 onPressed: () { 
+                                                    HapticFeedback.selectionClick();
                                                     loadSampleCsv(
                                                         'Maize synthetic data',
                                                         sampleFiles['Maize synthetic data']!,
@@ -446,21 +450,20 @@ class _UploadPageState extends State<UploadPage> {
                                                         padding: const EdgeInsets.all(8.0),
                                                         child: SizedBox(
                                                             width: double.infinity,
-                                                            child: Expanded(
-                                                                child: ElevatedButton(
-                                                                    onPressed: fileName == null ? null : () {
-                                                                // navigation will go here later
-                                                                    },
-                                                                    style: ElevatedButton.styleFrom(
-                                                                        padding: const EdgeInsets.symmetric(vertical: 18),
-                                                                        shape: RoundedRectangleBorder(
-                                                                            borderRadius: BorderRadius.circular(18),
-                                                                        ),
+                                                            child: ElevatedButton(
+                                                                onPressed: fileName == null ? null : () {
+                                                                HapticFeedback.selectionClick();
+                                                            // navigation will go here later
+                                                                },
+                                                                style: ElevatedButton.styleFrom(
+                                                                    padding: const EdgeInsets.symmetric(vertical: 18),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(18),
                                                                     ),
-                                                                    child: const Text(
-                                                                        'Confirm',
-                                                                        style: TextStyle(fontSize: 18),
-                                                                    ),
+                                                                ),
+                                                                child: const Text(
+                                                                    'Confirm',
+                                                                    style: TextStyle(fontSize: 18),
                                                                 ),
                                                             ),
                                                         ),
