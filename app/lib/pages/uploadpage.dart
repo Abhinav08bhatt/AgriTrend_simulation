@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import
+import 'package:app/pages/loadingpage.dart';
 import 'package:flutter/services.dart';
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
@@ -358,22 +359,22 @@ class _UploadPageState extends State<UploadPage> {
                                         const SizedBox(height: 10),
 
                                         SizedBox(
-                                        height: 56,
-                                        width: double.infinity,
-                                        child: ElevatedButton(
-                                            onPressed: pickCsvFile,
-                                            style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.blueAccent,
-                                            padding: const EdgeInsets.symmetric(vertical: 18),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(18),
+                                            height: 56,
+                                            width: double.infinity,
+                                            child: ElevatedButton(
+                                                onPressed: pickCsvFile,
+                                                style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.blueAccent,
+                                                padding: const EdgeInsets.symmetric(vertical: 18),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(18),
+                                                ),
+                                                ),
+                                                child: const Text(
+                                                'Upload CSV',
+                                                style: TextStyle(fontSize: 18),
+                                                ),
                                             ),
-                                            ),
-                                            child: const Text(
-                                            'Upload CSV',
-                                            style: TextStyle(fontSize: 18),
-                                            ),
-                                        ),
                                         ),
                     
                                         const SizedBox(height: 30),
@@ -452,9 +453,14 @@ class _UploadPageState extends State<UploadPage> {
                                                             width: double.infinity,
                                                             child: ElevatedButton(
                                                                 onPressed: fileName == null ? null : () {
-                                                                HapticFeedback.selectionClick();
-                                                            // navigation will go here later
-                                                                },
+                                                                        HapticFeedback.selectionClick();
+                                                                        Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) => const LoadingPage(),
+                                                                        ),
+                                                                        );
+                                                                    },
                                                                 style: ElevatedButton.styleFrom(
                                                                     padding: const EdgeInsets.symmetric(vertical: 18),
                                                                     shape: RoundedRectangleBorder(
