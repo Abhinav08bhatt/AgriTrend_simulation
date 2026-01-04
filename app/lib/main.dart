@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 
 /// ---- APP BAR ----
                 appBarTheme: const AppBarTheme(
+                    toolbarHeight: 58,
                     backgroundColor: Colors.white,
                     elevation: 0,
                     centerTitle: false,
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
 
                     // 15% opacity of #4CB7FF
                     shadowColor: Color(0x264CB7FF),
-
+                    
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(14)),
                     ),
