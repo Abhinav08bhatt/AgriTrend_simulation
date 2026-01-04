@@ -1,8 +1,9 @@
 // import 'dart:js_interop';
 
+import 'package:app/pages/simulatepage.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:flutter/services.dart';
 
 class DataReportPage extends StatefulWidget {
     const DataReportPage({super.key});
@@ -549,32 +550,40 @@ class _SimulationSection extends StatelessWidget {
 
                         Padding(
                             padding: const EdgeInsets.fromLTRB(16,8,16,12),
-                            child: ElevatedButton(onPressed: () {}, 
+                            child: ElevatedButton(onPressed: () {
+                                HapticFeedback.selectionClick();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SimulatePage(),
+                                    ),
+                                );
+                            }, 
 
-                                    style: ElevatedButton.styleFrom(
-                                        shadowColor: const Color(0xFF70C2F8).withValues(alpha: 0.5), 
-                                    ),
-                                    child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(24),
-                                            boxShadow: [
-                                                BoxShadow(
-                                                    color: const Color(0xFF70C2F8).withValues(alpha: 0.5),
-                                                    blurRadius: 8,
-                                                    spreadRadius: 8,
-                                                ),
-                                            ],
-                                        ),
-                                        child: Center(
-                                            child: Text(
-                                                "Simulate",
-                                                style: TextStyle(fontSize: 18),
+                                style: ElevatedButton.styleFrom(
+                                    shadowColor: const Color(0xFF70C2F8).withValues(alpha: 0.5), 
+                                ),
+                                child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(24),
+                                        boxShadow: [
+                                            BoxShadow(
+                                                color: const Color(0xFF70C2F8).withValues(alpha: 0.5),
+                                                blurRadius: 8,
+                                                spreadRadius: 8,
                                             ),
-                                        ),          
+                                        ],
                                     ),
-                                )
-                            ),
+                                    child: Center(
+                                        child: Text(
+                                            "Simulate",
+                                            style: TextStyle(fontSize: 18),
+                                        ),
+                                    ),          
+                                ),
+                            )
+                        ),
                     ],
                 ),
 
