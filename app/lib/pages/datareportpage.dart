@@ -1,5 +1,4 @@
 // import 'dart:js_interop';
-
 import 'package:app/pages/simulatepage.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -549,7 +548,7 @@ class _SimulationSection extends StatelessWidget {
                         ),
 
                         Padding(
-                            padding: const EdgeInsets.fromLTRB(16,8,16,12),
+                            padding: const EdgeInsets.fromLTRB(16,12,16,16),
                             child: ElevatedButton(onPressed: () {
                                 HapticFeedback.selectionClick();
                                 Navigator.push(
@@ -576,9 +575,12 @@ class _SimulationSection extends StatelessWidget {
                                         ],
                                     ),
                                     child: Center(
-                                        child: Text(
-                                            "Simulate",
-                                            style: TextStyle(fontSize: 18),
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(10,4,10,4),
+                                            child: Text(
+                                                "Simulate",
+                                                style: TextStyle(fontSize: 18),
+                                            ),
                                         ),
                                     ),          
                                 ),
