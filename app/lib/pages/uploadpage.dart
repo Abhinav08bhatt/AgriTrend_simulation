@@ -455,10 +455,12 @@ class _UploadPageState extends State<UploadPage> {
                                                                 onPressed: fileName == null ? null : () {
                                                                         HapticFeedback.selectionClick();
                                                                         Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (context) => const LoadingPage(),
-                                                                        ),
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                                builder: (context) => LoadingPage(
+                                                                                    fileContent: fileContent!,
+                                                                                ),
+                                                                            ),
                                                                         );
                                                                     },
                                                                 style: ElevatedButton.styleFrom(
@@ -487,5 +489,3 @@ class _UploadPageState extends State<UploadPage> {
         );
     }
 }
-
-

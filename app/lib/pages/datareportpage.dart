@@ -3,12 +3,18 @@ import 'package:app/pages/simulatepage.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
+import 'package:app/models/dataset.dart';
 
 class DataReportPage extends StatefulWidget {
-    const DataReportPage({super.key});
+  final Dataset dataset;
 
-    @override
-    State<DataReportPage> createState() => _DataReportPageState();
+  const DataReportPage({
+    super.key,
+    required this.dataset,
+  });
+
+  @override
+  State<DataReportPage> createState() => _DataReportPageState();
 }
 
 class _DataReportPageState extends State<DataReportPage> {

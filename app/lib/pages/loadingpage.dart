@@ -1,31 +1,53 @@
 import 'package:app/pages/datareportpage.dart';
 import 'package:flutter/material.dart';
+import 'package:app/models/dataset.dart';
+import 'package:app/services/csv_parser.dart';
+
 
 class LoadingPage extends StatefulWidget {
-  const LoadingPage({super.key});
+  final String fileContent;
+
+  const LoadingPage({
+    super.key,
+    required this.fileContent,
+  });
+
 
   @override
   State<LoadingPage> createState() => _LoadingPageState();
 }
 
 class _LoadingPageState extends State<LoadingPage> {
-  @override
-  void initState() {
-    super.initState();
+@override
+void initState() {
+  super.initState();
 
-    // Fake processing delay
-    Future.delayed(const Duration(seconds: 2), () {
+  Future.microtask(() async {
+    try {
+      final dataset = parseCsv(widget.fileContent);
+
       if (!mounted) return;
 
-      // TEMP navigation (we’ll replace ReportPage later)
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => DataReportPage(),
+          builder: (_) => DataReportPage(dataset: dataset),
         ),
       );
-    });
-  }
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid CSV file')),
+      );
+
+      Navigator.pop(context);
+    }
+  });
+}
+
+
+
 
   @override
   Widget build(BuildContext context) {
