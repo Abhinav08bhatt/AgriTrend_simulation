@@ -1,64 +1,73 @@
-import 'package:csv/csv.dart';
-import '../models/dataset.dart';
+import 'package:app/models/dataset.dart';
 
-Dataset parseCsv(String csvContent) {
-  try {
-    final rows = const CsvToListConverter(
-      eol: '\n',
-      shouldParseNumbers: false,
-    ).convert(csvContent);
+Dataset parseCsv(String csvText) {
+  final lines = csvText.trim().split('\n');
 
-    if (rows.isEmpty) {
-      throw Exception('CSV is empty');
-    }
-
-    // Normalize headers
-    final headers = rows.first
-        .map((e) => e.toString().trim().toLowerCase())
-        .toList();
-
-    final dataRows = rows.skip(1);
-
-    // Required columns
-    final yearIndex = headers.indexOf('year');
-    final yieldIndex = headers.indexOf('yield_kg_ha');
-
-    if (yearIndex == -1 || yieldIndex == -1) {
-      throw Exception('CSV must contain year and yield_kg_ha columns');
-    }
-
-    final years = <int>[];
-    final yieldValues = <double>[];
-    final factors = <String, List<double>>{};
-
-    // All other columns are factors
-    for (int i = 0; i < headers.length; i++) {
-      final h = headers[i];
-      if (i != yearIndex && i != yieldIndex) {
-        factors[h] = [];
-      }
-    }
-
-    for (final row in dataRows) {
-      if (row.length != headers.length) continue;
-
-      years.add(int.parse(row[yearIndex].toString()));
-      yieldValues.add(double.parse(row[yieldIndex].toString()));
-
-      factors.forEach((key, list) {
-        final idx = headers.indexOf(key);
-        list.add(double.parse(row[idx].toString()));
-      });
-    }
-
-    return Dataset(
-      years: years,
-      factors: factors,
-      yieldValues: yieldValues,
-    );
-  } catch (e, s) {
-    print('CSV PARSE ERROR: $e');
-    print('$s');
-    rethrow;
+  if (lines.length < 2) {
+    throw Exception("CSV has no data rows");
   }
+
+  final headers = lines.first.split(',');
+
+  // Map column name → index
+  final colIndex = <String, int>{};
+  for (int i = 0; i < headers.length; i++) {
+    colIndex[headers[i]] = i;
+  }
+
+  // Required columns
+  final required = [
+    'year',
+    'rainfall_mm',
+    'temperature_c',
+    'soil_index',
+    'irrigation_pct',
+    'fertilizer_kg_ha',
+    'yield_kg_ha',
+  ];
+
+  for (final col in required) {
+    if (!colIndex.containsKey(col)) {
+      throw Exception("Missing column: $col");
+    }
+  }
+
+  // Storage
+  final years = <int>[];
+  final yieldValues = <double>[];
+  final factors = <String, List<double>>{
+    'rainfall_mm': [],
+    'temperature_c': [],
+    'soil_index': [],
+    'irrigation_pct': [],
+    'fertilizer_kg_ha': [],
+  };
+
+  // Parse rows
+  for (int i = 1; i < lines.length; i++) {
+    final cells = lines[i].split(',');
+
+    if (cells.length != headers.length) continue;
+
+    years.add(int.parse(cells[colIndex['year']!]));
+    yieldValues.add(double.parse(cells[colIndex['yield_kg_ha']!]));
+
+    factors['rainfall_mm']!
+        .add(double.parse(cells[colIndex['rainfall_mm']!]));
+    factors['temperature_c']!
+        .add(double.parse(cells[colIndex['temperature_c']!]));
+    factors['soil_index']!
+        .add(double.parse(cells[colIndex['soil_index']!]));
+    factors['irrigation_pct']!
+        .add(double.parse(cells[colIndex['irrigation_pct']!]));
+    factors['fertilizer_kg_ha']!
+        .add(double.parse(cells[colIndex['fertilizer_kg_ha']!]));
+  }
+
+  return Dataset(
+    years: years,
+    factors: factors,
+    yieldValues: yieldValues,
+    rawCsv: csvText,
+  );
 }
