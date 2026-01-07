@@ -2,6 +2,7 @@ import 'package:app/pages/datareportpage.dart';
 import 'package:flutter/material.dart';
 import 'package:app/models/dataset.dart';
 import 'package:app/services/csv_parser.dart';
+import 'package:app/constants/colors.dart';
 
 
 class LoadingPage extends StatefulWidget {
@@ -22,29 +23,40 @@ class _LoadingPageState extends State<LoadingPage> {
 void initState() {
   super.initState();
 
-  Future.microtask(() async {
+  Future.microtask(() {
     try {
-      final dataset = parseCsv(widget.fileContent);
+final dataset = parseCsv(widget.fileContent);
+// final insights = computeInsights(dataset);
+// final insight = computeInsights(dataset);
+
 
       if (!mounted) return;
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => DataReportPage(dataset: dataset),
-        ),
-      );
+
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (_) => DataReportPage(
+      dataset: dataset,
+    ),
+  ),
+);
+
+
+
+
     } catch (e) {
       if (!mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Invalid CSV file')),
+        const SnackBar(content: Text('Invalid CSV file')),
       );
 
       Navigator.pop(context);
     }
   });
 }
+
 
 
 
