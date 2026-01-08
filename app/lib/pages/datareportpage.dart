@@ -623,25 +623,27 @@ FutureBuilder<List<InsightBar>>(
   future: _futureBars,
   builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Padding(
-        padding: EdgeInsets.all(24),
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (snapshot.hasError) {
-      return Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          "ERROR:\n${snapshot.error}",
-          style: const TextStyle(color: Colors.red),
-        ),
+      return Text(
+        'Error loading insights: ${snapshot.error}',
+        style: const TextStyle(color: Colors.red),
+      );
+    }
+
+    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+      return const Text(
+        'No regression insights available for this dataset.',
+        style: TextStyle(color: Colors.grey),
       );
     }
 
     return InsightBarChart(bars: snapshot.data!);
   },
-),
+)
+
 
         ],
       ),

@@ -29,7 +29,8 @@ Future<RegressionResult> fetchRegressionInsights(String csvText) async {
   debugPrint(csvText.substring(0, 50));
 
   final response = await http.post(
-    Uri.parse("http://172.31.136.162:8000/analysis/regression"),
+    // Uri.parse("http://172.31.136.162:8000/analysis/regression"),
+    Uri.parse("http://127.0.0.1:8000/analysis/regression"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({"csv": csvText}),
   );

@@ -10,12 +10,10 @@ router = APIRouter()
 class DatasetPayload(BaseModel):
     csv: str
 
-
 @router.post("/regression")
 def regression_analysis(payload: DatasetPayload):
     df = pd.read_csv(StringIO(payload.csv))
 
-    # 🔒 STRICT COLUMN FILTER (CRITICAL)
     required_cols = [
         "year",
         "rainfall_mm",
@@ -27,12 +25,21 @@ def regression_analysis(payload: DatasetPayload):
     ]
     df = df[required_cols]
 
+    # 🔒 CRITICAL FIX (BEFORE REGRESSION)
+    df = df.replace([np.inf, -np.inf], np.nan).dropna()
+
+    if len(df) < 3:
+        return {
+            "factors": [],
+            "standardized_impact": [],
+            "relative_contribution": [],
+        }
+
     results = run_regression_analysis(df)
     std_coeffs = results["std_coeffs"]
 
-    # 🔒 FORCE JSON-SAFE VALUES
-    std_coeffs = std_coeffs.replace([np.inf, -np.inf], np.nan)
-    std_coeffs = std_coeffs.fillna(0.0)
+    # 🔒 JSON-SAFE
+    std_coeffs = std_coeffs.replace([np.inf, -np.inf], np.nan).fillna(0.0)
 
     return {
         "factors": std_coeffs["Factor"].tolist(),
