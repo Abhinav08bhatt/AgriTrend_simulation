@@ -16,7 +16,6 @@ Enter the data you want to analyse :
     2) Rice Synthetic Data
     3) Wheat Synthetic Data
     4) Maize Synthetic Data
-
     ''')
     data_choice = input("Enter option number: ").strip()
 
@@ -80,7 +79,6 @@ Choose Scenario:
     2) Drought Stress Scenario
     3) Fertilizer Optimization Scenario
     4) Climate Shift Scenario
-
     """)
     choice = input("Enter option number: ").strip()
 
@@ -108,7 +106,7 @@ Choose Scenario:
 
 # 9 Build final PDF report
     build_pdf_report(dataset_name=dataset_name,scenario_name=scenario_name,scenario_plot_path=scenario_plot_path)
-    print("Report Created Successfully \nLocation: outputs/reports/")
+    print("\n\nReport Created Successfully:  \nLocation: outputs/reports/")
 
 if __name__ == "__main__":
     main()
