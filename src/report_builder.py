@@ -7,7 +7,11 @@ from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
 
 
-def build_pdf_report():
+def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Path):
+    """
+    Builds the final PDF report for AgriTrend Simulation.
+    """
+
     """
     Builds the final PDF report for AgriTrend Simulation.
     """
@@ -15,7 +19,11 @@ def build_pdf_report():
     # --------------------------------------------------
     # Paths
     # --------------------------------------------------
-    output_pdf = Path("outputs/reports/universal_data.pdf")
+    safe_dataset = dataset_name.replace(" ", "_").lower()
+    safe_scenario = scenario_name.replace(" ", "_").lower()
+
+    output_pdf = Path(f"outputs/reports/{safe_dataset}__{safe_scenario}.pdf")
+
 
     graph_yield = Path("outputs/graphs/yield_trend.png")
     graph_standardized = Path("outputs/graphs/standardized_trends.png")
@@ -28,8 +36,8 @@ def build_pdf_report():
     doc = SimpleDocTemplate(
         str(output_pdf),
         pagesize=A4,
-        rightMargin=50,
-        leftMargin=50,
+        rightMargin=40,
+        leftMargin=40,
         topMargin=40,
         bottomMargin=40,
     )
@@ -45,20 +53,33 @@ def build_pdf_report():
         name="TitleStyle",
         parent=styles["Title"],
         alignment=TA_CENTER,
-        fontSize=22,
-        spaceAfter=20,
+        fontSize=20,
+        spaceAfter=18,
     )
 
     subtitle_style = ParagraphStyle(
         name="SubtitleStyle",
         parent=styles["Normal"],
         alignment=TA_CENTER,
-        fontSize=13,
+        fontSize=12,
         textColor="grey",
         spaceAfter=20,
     )
 
     story.append(Paragraph("AgriTrend_simulation", title_style))
+    story.append(
+        Paragraph(
+            f"<b>Dataset:</b> {dataset_name}<br/><b>Scenario:</b> {scenario_name}",
+            subtitle_style,
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "<i>Note: Results illustrate trend behavior under assumed conditions, not guaranteed outcomes.</i>",
+            subtitle_style,
+        )
+    )
 
     story.append(
         Paragraph(
@@ -110,19 +131,18 @@ def build_pdf_report():
     The results point to a difficult reality :
     <b>Long-term system stress dominates agricultural outcomes.</b>
     <br/><br/>
-    However, they also reveal something important.
-    <br/><br/>
+    However, the analysis also highlights an important consideration.
     <i>
-    Decline is not inevitable.
+    Long-term outcomes are sensitive to how multiple factors evolve together.
     </i>
-    <br/><br/>
 
-    Even modest, sustained improvements when applied together
-    can slow negative trends and create a more stable future.
+    Small, sustained changes when applied consistently across several factors
+    can meaningfully alter long-term trends in some scenarios, while in others
+    they help clarify the limits of intervention under continued stress.
     <br/><br/>
 
     <b>
-    The future is challenging, but it is not fixed.
+    The future is challenging, but it remains shaped by long-term choices.
     </b>
     </para>
     '''
@@ -502,7 +522,12 @@ def build_pdf_report():
 
     story.append(Spacer(1, 10))
 
-    story.append(Paragraph("Best-Case Scenario: Coordinated 1% Improvements", styles["Heading1"]))
+    story.append(
+        Paragraph(
+            f"Scenario Analysis: {scenario_name}",
+            styles["Heading1"]
+        )
+    )
     story.append(Spacer(1, 10))
 
     scenario_text = '''
@@ -535,7 +560,7 @@ def build_pdf_report():
     story.append(Paragraph(scenario_text, styles["Normal"]))
     story.append(Spacer(1, 20))
 
-    scenario_graph = Path("outputs/graphs/baseline_vs_best_case.png")
+    scenario_graph = Path(scenario_plot_path)
 
     if scenario_graph.exists():
         img = Image(str(scenario_graph), width=450, height=220)

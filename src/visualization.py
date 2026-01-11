@@ -232,7 +232,7 @@ def plot_factor_contributions(std_coeffs: pd.DataFrame) -> Path:
 
 ######################################################################## 5.b.2
 
-def plot_baseline_vs_scenario(historical_df: pd.DataFrame,baseline_future: pd.DataFrame,scenario_future: pd.DataFrame,) -> Path:
+def plot_baseline_vs_scenario(historical_df: pd.DataFrame,baseline_future: pd.DataFrame,scenario_future: pd.DataFrame,scenario_name: str) -> Path:
     
     years_hist = historical_df["year"]
     yield_hist = historical_df["yield_kg_ha"]
@@ -286,8 +286,9 @@ def plot_baseline_vs_scenario(historical_df: pd.DataFrame,baseline_future: pd.Da
     plt.title("Scenario Analysis: Yield Response to Factor Changes")
     plt.legend()
 
-    output_path = GRAPHS_DIR / "baseline_vs_best_case.png"
+    output_path = GRAPHS_DIR / f"baseline_vs_{scenario_name.replace(' ', '_').lower()}.png"
     plt.savefig(output_path, dpi=200, bbox_inches="tight")
     plt.close()
 
     return output_path
+

@@ -64,3 +64,46 @@ def run_best_case_1pct_scenario(baseline_future: pd.DataFrame,model_bundle: dict
     }
 
     return run_intervention_scenario(baseline_future, model_bundle, rates)
+
+
+def run_drought_stress_scenario(baseline_future: pd.DataFrame, model_bundle: dict) -> pd.DataFrame:
+    """
+    Simulates prolonged drought conditions.
+    Rainfall decreases, temperature increases, soil degrades faster.
+    """
+    rates = {
+        "rainfall": -0.02,
+        "temperature": 0.01,
+        "soil": 0.02,
+        "irrigation": 0.005,
+        "fertilizer": 0.00,
+    }
+    return run_intervention_scenario(baseline_future, model_bundle, rates)
+
+
+def run_fertilizer_optimization_scenario(baseline_future: pd.DataFrame, model_bundle: dict) -> pd.DataFrame:
+    """
+    Simulates improved fertilizer management with diminishing returns.
+    """
+    rates = {
+        "rainfall": 0.00,
+        "temperature": 0.00,
+        "soil": 0.005,
+        "irrigation": 0.00,
+        "fertilizer": 0.02,
+    }
+    return run_intervention_scenario(baseline_future, model_bundle, rates)
+
+
+def run_climate_shift_scenario(baseline_future: pd.DataFrame, model_bundle: dict) -> pd.DataFrame:
+    """
+    Simulates climate change: higher temperature and rainfall variability.
+    """
+    rates = {
+        "rainfall": -0.01,
+        "temperature": 0.02,
+        "soil": 0.01,
+        "irrigation": 0.01,
+        "fertilizer": 0.01,
+    }
+    return run_intervention_scenario(baseline_future, model_bundle, rates)
