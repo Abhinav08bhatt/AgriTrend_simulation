@@ -661,7 +661,7 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
 
     story.append(Paragraph(conclusion_text, styles["Normal"]))
 
-    story.append(Spacer(1, 85))
+    story.append(Spacer(1, 50))
 
     reference_text = """
     <b>References and Project Resources</b>
