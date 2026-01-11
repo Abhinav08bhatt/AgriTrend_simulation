@@ -1,15 +1,31 @@
-# An Apology
+# Real-World Data (Placeholder)
 
-### Due to delays and access restrictions in obtaining official government agricultural datasets, I COULD NOT get the official real world data.
-> The prototype currently uses synthetically generated but statistically realistic data to validate the analytical pipeline.
+This folder is reserved for **real-world agricultural datasets**.
 
-**The pseudo-data is generated using controlled distributions and domain-inspired assumptions**
-(e.g., rainfall variability, soil fertility bounds, noise factors such as pests and practices).
+At the current stage of development, the project uses **synthetic data** rather
+than official or government-published datasets. This is due to access
+constraints and the limited availability of open, machine-readable agricultural
+data during the project timeline.
 
-This approach allows us to:
-- validate system correctness
-- test sensitivity and scenario analysis
-- demonstrate research methodology
+## Why Synthetic Data Is Used
 
----
-**The system is designed so that real tabular datasets (CSV/Excel) can replace the synthetic data without any architectural changes.**
+Synthetic data is generated using:
+- controlled statistical distributions
+- domain-inspired assumptions
+- realistic value bounds
+- long-term trends and variability
+
+This allows the system to:
+- validate the full analysis pipeline
+- test model behavior under different conditions
+- explore scenario-based outcomes
+- demonstrate research methodology in a reproducible way
+
+## Future Integration
+
+The system is intentionally designed so that **real tabular datasets
+(CSV or Excel)** can replace synthetic data without requiring any structural
+changes to the code.
+
+When real data becomes available, it can be placed in this folder and loaded
+using the same data pipeline.
