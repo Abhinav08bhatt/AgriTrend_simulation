@@ -92,7 +92,7 @@ Round 1 focused on establishing a **clean, interpretable proof of concept**.
 
 **Round 1 code is preserved and accessible:**  
 - Git tag: `round-1-final`
-- Branch: `round-1'
+- Branch: `round-1`
 - Round 1 Tag:   
   https://github.com/Abhinav08bhatt/AgriTrend_simulation/tree/round-1-final
 - Round 1 Branch:  
@@ -109,6 +109,14 @@ Round 2 extends the prototype into a **more flexible and presentable system**:
 - Dataset-aware automated PDF reports  
 - Cleaner project structure and documentation  
 - Improved interpretability and safer reporting language  
+
+**Round 2 code is preserved and accessible:**  
+- Git tag: `round-2-final`
+- Branch: `round-2`
+- Round 1 Tag:   
+  https://github.com/Abhinav08bhatt/AgriTrend_simulation/tree/round-2-final
+- Round 1 Branch:  
+  https://github.com/Abhinav08bhatt/AgriTrend_simulation/tree/round-2
 
 ---
 
