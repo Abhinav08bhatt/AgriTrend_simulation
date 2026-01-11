@@ -178,7 +178,7 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     AgriTrend_simulation is built to understand one core idea:
     <br/>
     <i>
-    If farming continues the way it is today, what happens to crop yield in the future (10 years from now)?
+    If farming continues the way it is today, how might crop yield trends evolve over the next 10 years?
     </i>
     <br/><br/>
 
@@ -243,9 +243,9 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     Finally, the system applies small, sustained improvements
     to multiple factors at the same time.
     <br/><br/>
-    These scenarios test whether coordinated action
-    even at just 1% improvement per year
-    can meaningfully change long-term outcomes.
+    These scenarios explore how coordinated action,
+    even at small annual change rates (such as 1%),
+    can influence long-term trends under different conditions.
     <br/><br/>
 
     <hr/>
@@ -258,9 +258,9 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     real-world datasets in the future without changing the overall design.
     <br/><br/>
 
-    Because of this structure, the system clearly shows what drives long-term yield decline,
-    what factors help stabilize agricultural output, and why even small, sustained changes
-    can matter when applied over many years.
+    Because of this structure, the system helps reveal which factors are associated
+    with long-term yield behavior, how different pressures interact over time,
+    and why sustained changes may have compounding effects across years.
     '''
 
     story.append(Paragraph(overview_text, styles["Normal"]))
@@ -279,9 +279,9 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     story.append(Spacer(1, 10))
 
     intro_text = '''
-    The system uses synthetically generated data that follows realistic agricultural
-    behavior, with all variables staying within practical limits and changing
-    gradually over time to reflect real environmental and management constraints.
+    The system uses synthetically generated data designed to mimic plausible
+    agricultural behavior, with all variables staying within practical limits and
+    changing gradually over time to reflect typical environmental and management constraints.
     '''
 
     story.append(Paragraph(intro_text, styles["Normal"]))
@@ -366,7 +366,17 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
 # --------------------------------------------------
 
     story.append(Paragraph("Historical Reality", styles["Heading1"]))
+    
     story.append(Spacer(1, 12))
+    
+    story.append(
+        Paragraph(
+            "<i>Note: Observations below reflect trend behavior in the selected dataset and are not universal outcomes.</i>",
+            styles["Normal"]
+        )
+    )
+    story.append(Spacer(1, 8))
+
 
     synthetic_text = '''
     The graph below shows how crop yield changes over time when all agricultural
@@ -388,23 +398,23 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     </b>
     <br/>
     • yield does not increase smoothly over time<br/>
-    • variability grows as years progress<br/>
-    • good years become less predictable<br/>
-    • poor years become more frequent
+    • variability may increase as years progress<br/>
+    • performance becomes less predictable across years<br/>
+    • periods of lower yield appear intermittently
     <br/><br/>
 
-    Even though management inputs such as irrigation and fertilizer increase over
-    time, yield does not follow the same upward path. This indicates that rising
-    inputs are increasingly used to compensate for environmental stress rather
-    than to generate real growth.
+    Even as management inputs such as irrigation and fertilizer increase over
+    time, yield does not necessarily follow the same upward trajectory. This
+    suggests that rising inputs may be increasingly used to offset environmental
+    pressure rather than to generate sustained growth.
     <br/><br/>
 
-    Another important signal is instability. 
+    Another important signal is instability.
     <br/><br/>
 
-    As the system becomes stressed, yield fluctuates more sharply from year to year. This instability is often
-    more damaging than slow decline, as it increases risk for farmers and food
-    systems.
+    In several cases, yield shows sharper year-to-year fluctuations as long-term
+    stress accumulates. Such instability can be as impactful as gradual decline,
+    as it increases uncertainty and risk within agricultural systems.
     <br/><br/>
 
     This historical yield trend sets the foundation for the rest of the analysis.
@@ -439,13 +449,16 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     to allow fair comparison over time.
     <br/><br/>
 
-    This graph shows how each factor changes relative to its own history.
-    While inputs such as irrigation and fertilizer steadily increase, crop
-    yield does not follow the same upward pattern.
+    This graph shows how each factor changes relative to its own historical
+    baseline.
+    While inputs such as irrigation and fertilizer tend to increase over time,
+    crop yield does not always follow the same upward pattern.
     <br/><br/>
 
-    The widening gap suggests declining system efficiency, where more input
-    is required just to maintain output.
+    In some cases, a widening gap between inputs and output may indicate
+    reduced system efficiency, where additional input is increasingly used
+    to compensate for environmental or structural pressures rather than to
+    generate proportional yield gains.
     '''
 
     story.append(Paragraph(trend_text, styles["Normal"]))
@@ -473,6 +486,14 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     story.append(Paragraph(factor_text, styles["Normal"]))
     story.append(Spacer(1, 15))
 
+    story.append(
+        Paragraph(
+            "<i>Note: Factor importance reflects model sensitivity within the synthetic dataset, not universal causal strength.</i>",
+            styles["Normal"]
+        )
+    )
+    story.append(Spacer(1, 8))
+
     factor_graph = Path("outputs/graphs/factor_contributions.png")
 
     if factor_graph.exists():
@@ -491,6 +512,7 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
 
     story.append(Paragraph("Baseline Future: If Nothing Changes", styles["Heading1"]))
     story.append(Spacer(1, 10))
+
 
     baseline_text = '''
     The baseline future shows what happens if current trends continue without
@@ -512,14 +534,22 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
 
     As a result:
     <br/>
-    • crop yield becomes more unstable over time<br/>
-    • poor years become more frequent<br/>
-    • overall yield shows a gradual downward trend
+    • crop yield may exhibit increased variability over time<br/>
+    • periods of lower yield can occur more frequently in some cases<br/>
+    • long-term yield trends may stabilize, decline, or fluctuate depending on conditions
     <br/><br/>
     '''
 
     story.append(Paragraph(baseline_text, styles["Normal"]))
 
+    story.append(Spacer(1, 6))
+
+    story.append(
+        Paragraph(
+            "<i>Note: Scenario outcomes depend on the selected dataset and intervention assumptions.</i>",
+            styles["Normal"]
+        )
+    )
     story.append(Spacer(1, 10))
 
     story.append(
@@ -531,30 +561,29 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     story.append(Spacer(1, 10))
 
     scenario_text = '''
-    To test whether decline is unavoidable, the system evaluates a best-case
-    scenario based on small but sustained improvements.
+    This section compares the selected scenario against the baseline future.
+
     <br/><br/>
 
-    In this scenario, multiple factors improve together every year:
+    Rather than assuming guaranteed improvement or decline, the comparison
+    highlights how small, sustained changes to multiple factors can compound
+    over time under different conditions.
+
+    <br/><br/>
+
+    When interpreting the scenario relative to the baseline, attention should be
+    paid to:
     <br/>
-    • rainfall effectiveness increases slightly<br/>
-    • temperature stress is reduced<br/>
-    • soil health improves<br/>
-    • irrigation coverage expands<br/>
-    • fertilizer use becomes more efficient
+    • whether the scenario trajectory diverges above or below the baseline<br/>
+    • how yield variability changes over time<br/>
+    • whether long-term trends stabilize, accelerate, or weaken<br/>
+    • how sensitive outcomes are to sustained annual changes
+
     <br/><br/>
 
-    Each change is modest just 1% per year but applied consistently.
-    <br/><br/>
-
-    Compared to the baseline future:
-    <br/>
-    • yield decline slows down<br/>
-    • average yield remains higher over time
-    <br/><br/>
-
-    The takeaway is clear : The system is under stress, but it is not beyond
-    repair. Coordinated sustained action can still change long-term outcomes.
+    The purpose of this comparison is not to claim optimal outcomes, but to
+    illustrate the directional impact and limits of intervention under
+    the selected assumptions.
     '''
 
     story.append(Paragraph(scenario_text, styles["Normal"]))
@@ -580,28 +609,29 @@ def build_pdf_report(dataset_name: str,scenario_name: str,scenario_plot_path: Pa
     story.append(Spacer(1, 12))
 
     conclusion_text = '''
-    This simulation provides a clear picture of how agricultural systems behave
-    under long-term stress. It does not focus on individual good or bad years.
-    Instead, it highlights structural patterns that emerge over time.
+    This simulation provides an illustrative view of how agricultural systems may
+    behave under long-term stress. It does not focus on individual good or bad
+    years, but instead highlights broader structural patterns that can emerge
+    over time under sustained pressure.
     <br/><br/>
 
     <b>Main conclusions</b>
     <br/>
-    • long-term environmental stress plays a dominant role in yield outcomes<br/>
-    • yield decline is not caused by one single factor<br/>
-    • multiple small pressures combine to reduce system efficiency<br/>
-    • increasing inputs alone does not guarantee stable productivity<br/>
-    • yield instability is as important as yield decline<br/>
-    • risk increases as variability grows
+    • long-term environmental stress can play a significant role in yield outcomes<br/>
+    • yield behavior is influenced by multiple interacting factors rather than a single cause<br/>
+    • small pressures can compound over time and affect system efficiency<br/>
+    • increasing inputs alone does not necessarily guarantee stable productivity<br/>
+    • yield instability can be as impactful as gradual decline<br/>
+    • higher variability is often associated with increased risk
     <br/><br/>
 
     <b>Key insights from the analysis</b>
     <br/>
-    • irrigation and fertilizer inputs increase steadily over time<br/>
-    • yield does not increase at the same rate<br/>
-    • the system works harder just to maintain output<br/>
-    • good years still occur but become less reliable<br/>
-    • poor years become more frequent
+    • irrigation and fertilizer inputs tend to increase over time in many cases<br/>
+    • yield does not always increase at the same rate as inputs<br/>
+    • additional inputs may increasingly be used to offset environmental stress<br/>
+    • good years can still occur but may become less predictable<br/>
+    • periods of lower yield can appear intermittently depending on conditions
     <br/><br/>
 
     <b>What this system is designed to do</b>

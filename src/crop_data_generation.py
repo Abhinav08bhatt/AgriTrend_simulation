@@ -59,7 +59,7 @@ def generate_base_factors(seed=123):
     return years, rainfall, temperature, soil, irrigation, fertilizer, pests
 
 
-def generate_rice_synthetic(seed=123, path="crop1synthetic.csv"):
+def generate_rice_synthetic(seed=123):
     years, rain, temp, soil, irr, fert, pest = generate_base_factors(seed)
 
     yield_kg_ha = (
@@ -85,11 +85,11 @@ def generate_rice_synthetic(seed=123, path="crop1synthetic.csv"):
         "yield_kg_ha": np.clip(yield_kg_ha, 0, None).round(0)
     })
 
-    data.to_csv(path, index=False)
+    # data.to_csv(path, index=False)
     return data
 
 
-def generate_wheat_synthetic(seed=456, path="crop2synthetic.csv"):
+def generate_wheat_synthetic(seed=123):
     years, rain, temp, soil, irr, fert, pest = generate_base_factors(seed)
 
     yield_kg_ha = (
@@ -115,11 +115,11 @@ def generate_wheat_synthetic(seed=456, path="crop2synthetic.csv"):
         "yield_kg_ha": np.clip(yield_kg_ha, 0, None).round(0)
     })
 
-    data.to_csv(path, index=False)
+    # data.to_csv(path, index=False)
     return data
 
 
-def generate_maize_synthetic(seed=789, path="crop3synthetic.csv"):
+def generate_maize_synthetic(seed=789):
     years, rain, temp, soil, irr, fert, pest = generate_base_factors(seed)
 
     yield_kg_ha = (
@@ -145,7 +145,7 @@ def generate_maize_synthetic(seed=789, path="crop3synthetic.csv"):
         "yield_kg_ha": np.clip(yield_kg_ha, 0, None).round(0)
     })
 
-    data.to_csv(path, index=False)
+    # data.to_csv(path, index=False)
     return data
 
 
