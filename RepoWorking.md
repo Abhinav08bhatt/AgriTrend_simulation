@@ -1,98 +1,143 @@
-# Round 2
+# Round 2 
 
 ## Objective of the Prototype
 
-The objective of this prototype is to design and demonstrate a clear, explainable framework for analyzing long-term agricultural yield trends and exploring future outcomes under controlled assumptions.
+The objective of this prototype is to design and demonstrate a **clear, explainable framework**
+for analyzing long-term agricultural yield trends and exploring future outcomes under
+controlled assumptions.
 
-Rather than focusing on short-term prediction accuracy, the system prioritizes transparency, interpretability, and system-level understanding.
+Rather than optimizing for short-term prediction accuracy, the system prioritizes:
 
-The prototype is intended to :
+- transparency of assumptions  
+- interpretability of results  
+- system-level trend understanding  
 
-- Model relationships between environmental, soil, and management factors and crop yield  
-- Demonstrate a complete end to end data pipeline, from data generation to analysis and visualization  
-- Enable scenario-based exploration of future yield outcomes  
-- Highlight long-term trends, risks, and trade-offs in agricultural systems  
-- Serve as a foundation for integrating real-world datasets in later stages  
-
-This prototype intentionally prioritizes methodological clarity and system
-design over predictive complexity.
+The project is designed as a **research and exploration tool**, not a forecasting product.
 
 ---
 
-## Data Requirements (Round 1)
+## How Round 2 Builds on Round 1
 
-For this prototype, the system operates on **tabular agricultural data** stored in CSV or Excel format.
+Round 1 focused on establishing a **clean, interpretable proof of concept**:
+a single synthetic dataset, a single intervention scenario, and a complete end-to-end pipeline.
 
-- Required Data Format
+Round 2 extends this foundation by improving **flexibility, structure, and presentation**:
+
+- Multiple selectable synthetic datasets (universal, rice, wheat, maize)  
+- Multiple scenario types (best-case improvement, drought stress, fertilizer optimization, climate shift)  
+- Dataset-aware and scenario-aware automated PDF reports  
+- Cleaner project organization and documentation  
+- Safer interpretation language to avoid overclaiming  
+
+The core philosophy remains unchanged:  
+**clarity and reasoning over complexity and opacity**.
+
+---
+
+## System Intent
+
+The prototype is intended to:
+
+- Model relationships between environmental, soil, and management factors and crop yield  
+- Demonstrate a complete end-to-end data pipeline  
+- Enable scenario-based exploration of future yield trajectories  
+- Highlight long-term trends, risks, sensitivities, and trade-offs  
+- Serve as a foundation for integrating real-world datasets in later stages  
+
+This system intentionally favors **methodological clarity and structural soundness**
+over advanced predictive techniques.
+
+---
+
+## Data Requirements
+
+The system operates on **tabular agricultural data** stored in CSV or Excel format.
+
+### Required Data Format
 
 | year | rainfall_mm | temperature_c | soil_index | irrigation_pct | fertilizer_kg_ha | pest_pressure_index | yield_kg_ha |
 |------|-------------|---------------|------------|----------------|------------------|---------------------|-------------|
 | x    | x           | x             | x          | x              | x                | x                   | x           |
 
-> Synthetic data following this structure is used in Round 1.
+> In the current prototype, **synthetically generated datasets** following this structure
+> are used to ensure reproducibility and controlled experimentation.
 
 ---
+
 ## Repository Structure and Responsibilities
 
-- ### [data/](/data)
-  Stores all datasets used by the system.
+### [`data/`](../data)
+Stores all datasets used by the system.
 
-    - `syntheticData/` — synthetic datasets used in the current prototype  
-    - `realData/` — reserved for future real-world datasets  
+- `syntheticData/` — synthetic datasets used in the current prototype  
+- `realData/` — reserved for future real-world datasets  
 
-  Each subfolder contains its own README describing usage and format.
-
----
-
-- ### [notebooks/](/notebooks)
-  Contains Jupyter notebooks used for explanation and documentation.
-
-    - `documentation_code.ipynb` — **recommended** notebook that explains the full pipeline with code, outputs, and reasoning.
-    - `sample_notebook/` — simplified example notebooks using pseudo data  
-
-  These notebooks are not required to run the program, but they provide the clearest view of how and why the system works.
+Each subfolder contains its own README describing format and usage.
 
 ---
 
-- ### [outputs/](/outputs)
-  Stores all generated outputs from the simulation.
+### [`notebooks/`](../notebooks)
+Contains Jupyter notebooks used for explanation and documentation.
 
-    - `graphs/` — plots created during analysis and scenario comparison  
-    - `reports/` — automatically generated PDF reports  
+- `documentation_code.ipynb` — **recommended** notebook explaining the full pipeline,
+  including assumptions, code, outputs, and interpretation  
+- `sample_notebook/` — simplified example notebooks using pseudo data  
 
-  All files in this folder are generated programmatically and can be deleted and recreated by re-running the main script.
-
----
-
-- ### [src/](/src)
-  Contains all core source code, organized in a modular way.
-
-    - `data_generation.py` — generates synthetic agricultural data  
-    - `data_loader.py` — loads and saves datasets  
-    - `analysis.py` — regression and factor contribution analysis  
-    - `model.py` — model training and baseline future projection  
-    - `scenarios.py` — intervention and improvement scenarios  
-    - `visualization.py` — graph generation and saving  
-    - `report_builder.py` — automatic PDF report generation  
-    - `paths.py` — centralized path management  
+These notebooks are not required to run the system, but they provide the clearest insight
+into how and why the system works.
 
 ---
 
-- ### [AgriTrend_simulation.py](/AgriTrend_simulation.py)
-  > The main execution file.
+### [`outputs/`](../outputs)
+Stores all generated outputs from simulation runs.
 
-  Running this file executes the full pipeline:
-  - `data generation → analysis → visualization → scenario simulation → report generation.`
+- `graphs/` — visualizations created during analysis and scenario comparison  
+- `reports/` — automatically generated PDF reports  
+
+All contents in this folder are generated programmatically and can be safely deleted
+and regenerated by re-running the main script.
 
 ---
 
-### [requirements.txt](/requirements.txt)
-  Lists all Python dependencies required to run the project.
+### [`src/`](../src)
+Contains all core source code, organized in a modular and readable structure.
 
+- `data_generation.py` — generic synthetic data generation  
+- `crop_data_generation.py` — crop-specific synthetic data generation  
+- `data_loader.py` — dataset saving and loading  
+- `analysis.py` — regression and factor contribution analysis  
+- `model.py` — model training and baseline future projection  
+- `scenarios.py` — intervention and stress scenario definitions  
+- `visualization.py` — graph generation and saving  
+- `report_builder.py` — automated PDF report construction  
+- `paths.py` — centralized path management  
 
-## Note
+---
 
-- The project does not aim to predict real-world yields or provide decision-making tools.
-- Its purpose is to explore long term behavior, identify dominant drivers, and demonstrate how coordinated changes can alter system trajectories.
+### [`AgriTrend_simulation.py`](../AgriTrend_simulation.py)
+The main execution file.
 
-> The design choices made in Round 1 focus on **clarity, honesty, and feasibility**.
+Running this file executes the full pipeline:
+1. data selection
+2. data generation / loading
+3. analysis
+4. visualization
+5. scenario simulation
+6. PDF report generation
+
+---
+
+### [`requirements.txt`](../requirements.txt)
+Lists all Python dependencies required to run the project.
+
+---
+
+## Important Notes
+
+- The system does **not** aim to predict real-world yields  
+- Results are **illustrative**, not prescriptive  
+- Outcomes depend on dataset assumptions and scenario design  
+- The framework is intended for exploration, learning, and comparison  
+
+> Design decisions in both Round 1 and Round 2 emphasize  
+> **clarity, honesty, and interpretability over complexity**.
