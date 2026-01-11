@@ -75,10 +75,12 @@ Enter the data you want to analyse :
 # 7 Run scenarios
     print("""
 Choose Scenario:
-1) Best-case 1% Improvement
-2) Drought Stress Scenario
-3) Fertilizer Optimization Scenario
-4) Climate Shift Scenario
+          
+    1) Best-case 1% Improvement
+    2) Drought Stress Scenario
+    3) Fertilizer Optimization Scenario
+    4) Climate Shift Scenario
+
     """)
     choice = input("Enter option number: ").strip()
 
