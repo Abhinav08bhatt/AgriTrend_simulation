@@ -113,9 +113,9 @@ Round 2 extends the prototype into a **more flexible and presentable system**:
 **Round 2 code is preserved and accessible:**  
 - Git tag: `round-2-final`
 - Branch: `round-2`
-- Round 1 Tag:   
+- Round 2 Tag:   
   https://github.com/Abhinav08bhatt/AgriTrend_simulation/tree/round-2-final
-- Round 1 Branch:  
+- Round 2 Branch:  
   https://github.com/Abhinav08bhatt/AgriTrend_simulation/tree/round-2
 
 ---
