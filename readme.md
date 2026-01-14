@@ -164,6 +164,11 @@ Round 2 extends the prototype into a **more flexible and presentable system**:
 ![Documentation Preview](preview/Documentation.png)
 ![Auto Generation Preview](preview/AutoGenerate.png)
 
+## Demo Video
+
+https://github.com/user-attachments/assets/74c01bea-5e3b-4752-827b-8f8faad916fc
+
+
 ---
 
 ## How to Run
