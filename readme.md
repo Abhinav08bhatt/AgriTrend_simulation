@@ -240,7 +240,7 @@ Planned extensions include:
 ## Team
 
 This project was developed by **The Eskimos!** as part of *Hack The Winter*.
-> Check teh commit graph for team information.
+> Check the commit graph for team information.
 
 ### Team Members & Roles
 
