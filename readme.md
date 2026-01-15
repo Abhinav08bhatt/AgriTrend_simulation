@@ -20,8 +20,12 @@ The system runs a **complete analysis pipeline** and automatically generates
 - baseline futures  
 - controlled intervention scenarios  
 
-This repository represents the **Round 2 continuation** of the project,
-originally developed for **Hack The Winter – Round 1**.
+This repository represents the **Round 2 continuation** of the project, originally developed for **Hack The Winter – Round 1**.
+| Round | Status | Rank |
+|---------------|----------------|----------------|
+|  Round 1  |  Selected  |  139  |  
+|  Round 2  |  Disqualified  |  -  |  
+|  Round 3  |  -  |  -  |  
 
 ---
 
@@ -236,25 +240,17 @@ Planned extensions include:
 ## Team
 
 This project was developed by **The Eskimos!** as part of *Hack The Winter*.
-
-> Development activity appears under a single Git account due to coordination and submission constraints.
-> Work was planned, reviewed, and distributed among team members according to individual skill sets and responsibility areas.
+> Check teh commit graph for team information.
 
 ### Team Members & Roles
 
 - **Abhinav**  
-  *System design, data modeling, analysis pipeline implementation, scenario logic, visualization, report generation, and overall integration.*
-
+  *System design, data modeling, analysis pipeline implementation, scenario logic, visualization, report generation, git management.*
+  
 - **Anubhav**  
-  *Problem formulation, conceptual discussion, validation of assumptions, and feedback on analytical approach.*
-
 - **Hariom Chamoli**  
-  *Review of system flow, interpretation of results, and documentation feedback.*
-
 - **Abhinav Benjwal**  
-  *Documentation assistance, README review, and project presentation inputs.*
 
-> Roles reflect contribution areas rather than commit volume.
 ---
 
 ## License
